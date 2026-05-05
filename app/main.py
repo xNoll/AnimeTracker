@@ -1,9 +1,11 @@
 from fastapi import FastAPI, HTTPException, Query
+from app.config import settings
 import httpx
 
+JIKAN_BASE_URL = "https://api.jikan.moe/v4"
+
 app = FastAPI(
-    #title=settings.app_name,
-    title = "AnimeTracker",
+    title=settings.app_name,
     description="A MyAnimeList-inspired API. Track your anime, rate them, manage your list.",
     version="0.1.0",
     docs_url="/docs",      # Swagger UI
@@ -11,17 +13,23 @@ app = FastAPI(
 )
 
 
+# Root
+@app.get("/", tags=["root"])
+def root():
+    """Root page."""
+    return {
+        "Hello": "World"
+    }
+
 # Health check
 @app.get("/health", tags=["health"])
 def health():
     """Used to check if app is up."""
     return {
         "status": "ok",
-        "app": app.title
+        "app": settings.app_name,
+        "debug": settings.debug
     }
-
-
-JIKAN_BASE_URL = "https://api.jikan.moe/v4"
 
 
 @app.get("/anime/search", tags=["anime"])
