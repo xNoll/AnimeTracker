@@ -52,3 +52,4 @@ async def search_anime(q: str = Query(..., min_length=1), limit: int = Query(10,
         }
         for anime in response.json().get("data", [])
     ]
+

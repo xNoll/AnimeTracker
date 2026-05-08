@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 from app.config import settings
 
@@ -17,7 +16,7 @@ SessionLocal = sessionmaker(
 )
 
 # Class that will inherit all our ORM models (Factory).
-class Base(declarative_base):
+class Base(DeclarativeBase):
     pass
 
 # 
