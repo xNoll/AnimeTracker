@@ -2,10 +2,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     # Database
-    database_url: str = "sqlite:///./animetracker.db"   # default - SQLite for local dev
+    database_url: str    # default - SQLite for local dev
 
     # External API
-    jikan_api_url: str = "https://api.jikan.moe/v4"
+    jikan_api_url: str
 
     # App
     app_name: str = "AnimeTracker API"
