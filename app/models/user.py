@@ -10,8 +10,11 @@ class User(Base):
 
     id:Mapped[int] = mapped_column(primary_key=True)
     username:Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
+    name:Mapped[str] = mapped_column(String(50), nullable=True)
+    surname:Mapped[str] = mapped_column(String(50), nullable=True)
     email:Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     hashed_password:Mapped[str] = mapped_column(String(255), nullable=False)
+    date_of_birth:Mapped[datetime] = mapped_column(datetime, nullable=True)
     is_active:Mapped[bool] = mapped_column(Boolean, default=True)
     created_at:Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

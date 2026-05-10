@@ -26,7 +26,7 @@ class Anime(Base):
     __tablename__ = "anime"
 
     id:Mapped[int] = mapped_column(primary_key=True)
-    mal_id:Mapped[int] = mapped_column(Integer, unique=True, nullable=False)
+    mal_id:Mapped[int] = mapped_column(Integer, unique=True, nullable=False)        # My Anime List ID
     title_original:Mapped[str] = mapped_column(String(255), nullable=False)
     title_english:Mapped[str | None] = mapped_column(String(255), nullable=True)
     image_url:Mapped[str | None] = mapped_column(String(500), nullable=True)

@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Query
 from app.config import settings
 import httpx
 
-JIKAN_BASE_URL = "https://api.jikan.moe/v4"
+
 
 app = FastAPI(
     title=settings.app_name,
@@ -35,7 +35,7 @@ def health():
 @app.get("/anime/search", tags=["anime"])
 async def search_anime(q: str = Query(..., min_length=1), limit: int = Query(10, ge=1, le=25)):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"{JIKAN_BASE_URL}/anime", params={"q": q, "limit": limit})
+        response = await client.get(f"{settings.jikan_api_url}/anime", params={"q": q, "limit": limit})
 
     if response.status_code != 200:
         raise HTTPException(status_code=502, detail="Error al conectar con Jikan API")
