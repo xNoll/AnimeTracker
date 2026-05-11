@@ -28,6 +28,7 @@ class AnimeResponse(BaseModel):
     title_english: str | None
     image_url: str | None
     genre: str | None
+    theme: str | None
     prequel: str | None
     sequel: str | None
     episodes: int | None
