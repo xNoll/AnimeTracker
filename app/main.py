@@ -2,15 +2,24 @@ from fastapi import FastAPI, HTTPException, Query
 from app.config import settings
 import httpx
 
+from app.database import Base, engine
+from app.models import anime, user  # noqa: F401 — imported so SQLAlchemy registers them
+from app.routers import auth, anime as anime_router, list as list_router
+
 
 
 app = FastAPI(
     title=settings.app_name,
     description="A MyAnimeList-inspired API. Track your anime, rate them, manage your list.",
-    version="0.1.0",
+    version="0.2.0",
     docs_url="/docs",      # Swagger UI
     redoc_url="/redoc",    # ReDoc (alternative UI)
 )
+
+# ── Routers ───────────────────────────────────────────────────────────────────
+app.include_router(auth.router)
+app.include_router(anime_router.router)
+app.include_router(list_router.router)
 
 
 # Root
