@@ -7,7 +7,7 @@ class UserCreate(BaseModel):
     password: str = Field(min_length=8, max_length=100)
     email: EmailStr
 
-    @field_validator
+    @field_validator("username")
     @classmethod
     def check_username_alpahnum(cls, user: str) -> str:
         if not user.replace("_","").replace("-","").isalnum:

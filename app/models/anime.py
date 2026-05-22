@@ -31,7 +31,7 @@ class Anime(Base):
     title_english:Mapped[str | None] = mapped_column(String(255), nullable=True)
     image_url:Mapped[str | None] = mapped_column(String(500), nullable=True)
     genre:Mapped[str | None] = mapped_column(String(50), nullable=True)
-    theme: str | None
+    theme: Mapped[str | None] = mapped_column(Text, nullable=True)
     prequel:Mapped[str | None] = mapped_column(String(500), nullable=True)
     sequel:Mapped[str | None] = mapped_column(String(500), nullable=True)
     episodes:Mapped[int | None] = mapped_column(Integer, nullable=True)

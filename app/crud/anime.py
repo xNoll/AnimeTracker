@@ -50,6 +50,9 @@ def _get_aired_to_data(data: dict) -> datetime | None:
 
 def _parse_jikan_anime_data(data: dict) -> dict:
     """Extract only what we need from a Jikan anime object."""
+    themes = data.get("themes", [])
+    genres = data.get("genres", [])
+
     return{
         "mal_id": data["mal_id"],
         "title_original": data["title"],
@@ -60,8 +63,8 @@ def _parse_jikan_anime_data(data: dict) -> dict:
         "score": data.get("score"),
         "status": data.get("status"),
         "age": data.get("rating"),
-        "theme": data.get("themes").get("0").get("name"),
-        "genre": data.get("genres").get("0").get("name"),
+        "theme": ", ".join(t["name"] for t in themes) if themes else None,
+        "genre": genres[0]["name"] if genres else None,
         "date_start_emission": _get_aired_from_data(data),
         "date_end_emission": _get_aired_to_data(data),
     }

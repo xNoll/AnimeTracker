@@ -6,7 +6,7 @@ from app.models.anime import WatchStatus
 
 # ── User anime list entries ───────────────────────────────────────────────────
 class EntryCreate(BaseModel):
-    mal_id: str = Field(description="MyAnimeList ID — we'll fetch and cache the anime if needed")
+    mal_id: int = Field(description="MyAnimeList ID — we'll fetch and cache the anime if needed")
     status: WatchStatus
     rating: int | None = Field(default=None, ge=1, le=10)
     episodes_watched: int | None = Field(default=0, ge=0)
