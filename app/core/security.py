@@ -11,15 +11,15 @@ from app.config import settings
 def hash_password(plain: str) -> str:
     return bcrypt.hashpw(plain.encode(), bcrypt.gensalt()).decode()
 
-def verify_password(hashed: str, plain: str) -> bool:
+def verify_password(plain: str, hashed: str) -> bool:
     return bcrypt.checkpw(plain.encode(), hashed.encode())
 
 
 # JWT
-def create_access_token_data(data: dict) -> str:
+def create_access_token(data: dict) -> str:
     payload = data.copy()
     expire = datetime.now(timezone.utc) + timedelta(
-        minutes= settings.access_token_expire_minutes
+        minutes = settings.access_token_expire_minutes
     )
     payload.update({"exp": expire})
 

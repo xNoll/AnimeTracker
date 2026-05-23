@@ -14,7 +14,7 @@ class User(Base):
     surname:Mapped[str] = mapped_column(String(50), nullable=True)
     email:Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     hashed_password:Mapped[str] = mapped_column(String(255), nullable=False)
-    date_of_birth:Mapped[datetime] = mapped_column(datetime, nullable=True)
+    date_of_birth:Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     is_active:Mapped[bool] = mapped_column(Boolean, default=True)
     created_at:Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
