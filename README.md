@@ -28,7 +28,7 @@ Deployable on AWS Free Tier (EC2 + RDS).
 
 ```bash
 # 1. Clone and set up environment
-git clone https://github.com/your-username/animetracker.git
+git clone https://github.com/xNoll/animetracker.git
 cd animetracker
 python -m venv venv
 source venv/bin/activate       # Windows: venv\Scripts\activate
