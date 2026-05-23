@@ -28,7 +28,7 @@ def register(data: UserCreate, db: Session = Depends(get_db)):
 @router.post("/login", response_model=Token)
 def login(data: UserLogin, db: Session = Depends(get_db)):
     """Authenticate and return a JWT access token."""
-    user = crud.user.get_by_username(db, data.username)
+    user = crud.user.get_by_username(db, data.username.lower())
 
     # Same error message for both wrong username and wrong password
     # (don't reveal which one failed — security best practice)

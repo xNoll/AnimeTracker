@@ -39,7 +39,7 @@ class Anime(Base):
     date_end_emission:Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     synopsis:Mapped[str | None] = mapped_column(Text, nullable=True)
     score:Mapped[float | None] = mapped_column(Float, nullable=True)
-    age:Mapped[str | None] = mapped_column(String(3), nullable=True)
+    age:Mapped[str | None] = mapped_column(String(50), nullable=True)
     status:Mapped[str | None] = mapped_column(String(20), nullable=True)
     cached_at:Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

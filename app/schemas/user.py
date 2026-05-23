@@ -22,6 +22,11 @@ class UserLogin(BaseModel):
     username: str
     password: str
 
+    @field_validator("username")
+    @classmethod
+    def username_to_lower(cls, v: str) -> str:
+        return v.lower()
+
 
 # ── Response schemas (what the API returns — never expose hashed_password) ───
 

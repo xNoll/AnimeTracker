@@ -7,6 +7,10 @@ from app.models import anime, user  # noqa: F401 — imported so SQLAlchemy regi
 from app.routers import auth, anime as anime_router, list as list_router
 
 
+# Create tables automatically on startup (fine for dev/SQLite)
+# In production with PostgreSQL, use Alembic migrations instead
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title=settings.app_name,
