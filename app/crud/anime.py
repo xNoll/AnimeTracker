@@ -146,11 +146,14 @@ def create_entry(db: Session, user_id: int, anime: Anime, data: EntryCreate) -> 
         episodes_watched = data.episodes_watched,
         notes = data.notes
     )
-    db.add(entry)
-    db.commit()
-    db.refresh()
-
-    return entry
+    try:
+        db.add(entry)
+        db.commit()
+        db.refresh(entry)
+        return entry
+    except Exception:
+        db.rollback()   
+        raise
 
 
 def update_entry(db: Session, entry: UserAnimeEntry, data: EntryUpdate) -> UserAnimeEntry:
@@ -167,7 +170,7 @@ def update_entry(db: Session, entry: UserAnimeEntry, data: EntryUpdate) -> UserA
 def delete_entry(db: Session, entry: UserAnimeEntry) -> None:
     db.delete(entry)
     db.commit()
-    db.refresh()
+    #db.refresh()
 
 
 def filter_entries_by_status(db: Session, user_id: int, status: WatchStatus) -> list[UserAnimeEntry]:
